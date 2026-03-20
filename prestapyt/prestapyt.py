@@ -32,6 +32,7 @@ from urllib.parse import urlencode
 import warnings
 import requests
 import mimetypes
+import random
 
 from . import xml2dict
 from . import dict2xml
@@ -502,7 +503,7 @@ class PrestaShopWebService(object):
             elements for data to be uploaded as files.
         :return: headers and body.
         """
-        BOUNDARY = '----------ThIs_Is_tHe_bouNdaRY_$'
+        BOUNDARY = "--" + str(int(random.random() * 1e10))
         CRLF = b'\r\n'
         L = []
         for (key, filename, value) in files:
